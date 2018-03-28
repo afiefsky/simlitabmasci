@@ -12,6 +12,11 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $this->load->view('dashboard/index');
+        $this->session->set_userdata([
+            'active_page' => 'dashboard'
+        ]);
+
+        $this->template->load('template/main', 'dashboard/index');
+        // $this->load->view('dashboard/index');
     }
 }

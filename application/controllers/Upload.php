@@ -27,7 +27,11 @@ class Upload extends CI_Controller
             echo "Kembali ke ".anchor("dashboard", "Beranda");;
 
         } else {
-            $this->load->view('upload/index');
+            $this->session->set_userdata([
+                'active_page' => 'upload'
+            ]);
+            
+            $this->template->load('template/main', 'upload/index');
         }
     }
 }
