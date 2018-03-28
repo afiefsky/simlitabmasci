@@ -8,6 +8,8 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Document_model');
+        $this->document = $this->Document_model;
     }
 
     public function index()
@@ -16,7 +18,9 @@ class Dashboard extends CI_Controller
             'active_page' => 'dashboard'
         ]);
 
-        $this->template->load('template/main', 'dashboard/index');
+        $data['record'] = $this->db->get('documents');
+
+        $this->template->load('template/main', 'dashboard/index', $data);
         // $this->load->view('dashboard/index');
     }
 }

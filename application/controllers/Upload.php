@@ -5,22 +5,29 @@ class Upload extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Document_model');
+        $this->document = $this->Document_model;
     }
 
     public function index()
     {
         if (isset($_POST['submit'])) {
             $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'gif|jpg|png|doc|docx|pdf';
+            $config['allowed_types']        = 'doc|docx|pdf';
             $config['max_size']             = 1000000;
-            $config['max_width']            = 102400;
-            $config['max_height']           = 76800;
 
             $this->load->library('upload', $config);
 
-            $this->upload->do_upload('userfile'); // this is a must
+            $this->upload->do_upload('userfile'); // this is a must, this is the uploading to drive action
 
             $data = array('upload_data' => $this->upload->data());
+
+            // file name
+            $file_name = $data['upload_data']['file_name'];
+            $full_path = $data['upload_data']['full_path'];
+
+            // below is adding the upload data to db
+            $this->document->upload($file_name, $full_path);
 
             echo "Upload success!!!";
             echo "<br />";
@@ -30,7 +37,7 @@ class Upload extends CI_Controller
             $this->session->set_userdata([
                 'active_page' => 'upload'
             ]);
-            
+
             $this->template->load('template/main', 'upload/index');
         }
     }
