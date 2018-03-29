@@ -8,8 +8,14 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Auth_model');
+
+        $this->load->model([
+            'Auth_model',
+            'User_model'
+        ]);
+
         $this->auth = $this->Auth_model;
+        $this->user = $this->User_model;
     }
 
     /**
@@ -26,9 +32,19 @@ class Auth extends CI_Controller
             $result = $this->auth->login($username, $password);
 
             if ($result == 1) {
+
+                $userData = $this->user->getUserRole($username)->row_array();
+
+                /**
+                 * level 1 is admin
+                 * level 2 is lecturer
+                 */ 
+                $levelNumber = $userData['level_number'];
+
                 $this->session->set_userdata([
                     'login_status' => 1,
-                    'username' => $username
+                    'username' => $username,
+                    'level_number' => $levelNumber
                 ]);
 
                 redirect('dashboard');
