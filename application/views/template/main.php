@@ -13,20 +13,40 @@ if ($login_status == 1) {
 		if ($active_page == 'dashboard') {
 		$dashboard = anchor('dashboard', 'Beranda', ['class' => 'active']);
 		$upload = anchor('upload', 'Upload');
+		$request_upload = null;
 	} elseif ($active_page == 'upload') {
 		$dashboard = anchor('dashboard', 'Beranda');
 		$upload = anchor('upload', 'Upload', ['class' => 'active']);
+		$request_upload = null;
 	}
 	
     $log_button = anchor('auth/logout', 'Logout');
-} elseif ($login_status == 0) {
+	$log_button_dosen = null;
+}
+elseif ($login_status == 2) {
+	
+		if ($active_page == 'dashboard') {
+		$dashboard = anchor('dashboard', 'Beranda', ['class' => 'active']);
+		$upload = null;
+		$request_upload = anchor('request_upload', 'Request Upload');
+	} elseif ($active_page == 'upload') {
+		$dashboard = anchor('dashboard', 'Beranda');
+		$upload = null;
+		$request_upload = anchor('request_upload', 'Request Upload', ['class' => 'active']);
+	}
+	$log_button = null;
+    $log_button_dosen = anchor('auth_dosen/logout', 'Logout');
+	
+} 
+elseif ($login_status == 0) {
 	
 		
 		$dashboard = anchor('dashboard', 'Beranda', ['class' => 'active']);
 		$upload = null;
-	
+		$request_upload = null;
 	
     $log_button = anchor('auth', 'Login');
+	$log_button_dosen = anchor('auth_dosen', 'Login Dosen');
 } else {
     die();
 }
@@ -77,8 +97,10 @@ if ($login_status == 1) {
   <ul>
     <li><?php echo $dashboard; ?></li>
     <li><?php echo $upload; ?></li>
+	<li><?php echo $request_upload; ?></li>
     <li><br></li>
     <li><?php echo $log_button; ?></li>
+	<li><?php echo $log_button_dosen; ?></li>
   </ul>
 
   <div style="margin-left:25%;padding:1px 16px;height:1000px;">
