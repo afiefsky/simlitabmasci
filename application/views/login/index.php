@@ -43,7 +43,9 @@
           <input name="username" type="text" autocomplete="off" placeholder="Masukkan username" class="form-control top"><br>
           Password : <input name="password" type="password" autocomplete="off" placeholder="Masukkan password" class="form-control bottom"><br>
           <br>
+		  <input type="button" value="Kembali" onclick="window.location.href='dashboard'" />
           <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Login</button>
+		  
           <br></br>
       </form>
       </div>
