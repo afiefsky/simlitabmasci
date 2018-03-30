@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * DEVELOPMENT DOCUMENTATION
+ * Typing PHP using 4 spaces
+ * Typing HTML using 2 spaces
+ */
 class Auth extends CI_Controller
 {
     /**
      * The Constructor
+     * 'camelCase' for functions / methods
+     * 'snake_case' for variables
+     * 'Pascal case' + 'snake_case' for entities / files (i.e: Auth_model)
     */
     public function __construct()
     {
@@ -33,18 +41,25 @@ class Auth extends CI_Controller
 
             if ($result == 1) {
 
-                $userData = $this->user->getUserRole($username)->row_array();
+                $user_data = $this->user->getUserRole($username)->row_array();
 
                 /**
                  * level 1 is admin
                  * level 2 is lecturer
                  */ 
-                $levelNumber = $userData['level_number'];
+                $level_number = $user_data['level_number'];
+                $user_id = $user_data['user_id'];
 
+                /**
+                 * login status only to decide if one is logged in or not
+                 * 1 means logged in
+                 * 0 means logged out / not logged in
+                 */
                 $this->session->set_userdata([
                     'login_status' => 1,
+                    'user_id' => $user_id,
                     'username' => $username,
-                    'level_number' => $levelNumber
+                    'level_number' => $level_number
                 ]);
 
                 redirect('dashboard');

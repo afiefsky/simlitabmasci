@@ -25,9 +25,10 @@ class Upload extends CI_Controller
             // file name
             $file_name = $data['upload_data']['file_name'];
             $full_path = $data['upload_data']['full_path'];
+            $note = $this->input->post('note');
 
             // below is adding the upload data to db
-            $this->document->upload($file_name, $full_path);
+            $this->document->upload($file_name, $full_path, $note);
 
             echo "Upload success!!!";
             echo "<br />";

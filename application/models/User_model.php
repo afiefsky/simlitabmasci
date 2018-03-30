@@ -13,6 +13,7 @@ class User_model extends CI_Model {
 
     public function getUserRole($username) {
         $this->db->select('
+            users.id AS user_id,
             users.username,
             roles.level_number
         ');
