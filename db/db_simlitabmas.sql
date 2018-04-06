@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2018 at 10:25 AM
+-- Generation Time: Apr 06, 2018 at 05:49 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -34,6 +34,14 @@ CREATE TABLE `documents` (
   `note` text NOT NULL,
   `acceptance_status` enum('0','1','2') NOT NULL DEFAULT '2' COMMENT '0 = rejected; 1 = accepted; 2 = unconfirmed'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `file_name`, `full_path`, `user_id`, `note`, `acceptance_status`) VALUES
+(9, 'admin_cv1.pdf', 'E:/xampp/htdocs/simlitabmasci/uploads/admin_cv1.pdf', 1, 'cv nu admin\r\n', '1'),
+(10, 'cv_bature.pdf', 'E:/xampp/htdocs/simlitabmasci/uploads/cv_bature.pdf', 1, 'aye', '0');
 
 -- --------------------------------------------------------
 
@@ -107,7 +115,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `roles`
 --
