@@ -2,18 +2,19 @@
 
 class Document_model extends CI_Model
 {
-    public function upload($file_name, $full_path, $note)
+    public function upload($data)
     {
-        $user_id = $this->session->userdata('user_id');
-        $data = [
-            'file_name' => $file_name,
-            'full_path' => $full_path,
-            'user_id' => $user_id,
-            'note' => $note,
-            'acceptance_status' => '2'
+        $record = [
+            'file_name' => $data['upload_data']['file_name'],
+            'full_path' => $data['upload_data']['full_path'],
+            'title' => $this->input->post('title'),
+            'ppm_type' => $this->input->post('ppm_type'),
+            'submitted_fund' => str_replace(['Rp. ', '.'], ['', ''], $this->input->post('submitted_fund')),
+            'period_type' => $this->input->post('period_type'),
+            'user_id' => $this->session->userdata('user_id')
         ];
         
-        $this->db->insert('documents', $data);
+        $this->db->insert('documents', $record);
     }
 
     public function get()

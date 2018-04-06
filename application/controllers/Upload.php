@@ -13,7 +13,7 @@ class Upload extends CI_Controller
     {
         if (isset($_POST['submit'])) {
             $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'doc|docx|pdf';
+            $config['allowed_types']        = 'doc|docx|pdf|txt';
             $config['max_size']             = 1000000;
 
             $this->load->library('upload', $config);
@@ -22,13 +22,8 @@ class Upload extends CI_Controller
 
             $data = array('upload_data' => $this->upload->data());
 
-            // file name
-            $file_name = $data['upload_data']['file_name'];
-            $full_path = $data['upload_data']['full_path'];
-            $note = $this->input->post('note');
-
             // below is adding the upload data to db
-            $this->document->upload($file_name, $full_path, $note);
+            $this->document->upload($data);
 
             echo "Upload success!!!";
             echo "<br />";
