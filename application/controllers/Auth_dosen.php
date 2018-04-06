@@ -35,7 +35,6 @@ class Auth_dosen extends CI_Controller
             } else {
                 echo "Login error!!!";
             }
-
         } else {
             $this->load->view('login_dosen/index');
         }

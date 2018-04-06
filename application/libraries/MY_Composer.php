@@ -4,11 +4,10 @@
  *
  * @author Rana
  */
-class MY_Composer 
+class MY_Composer
 {
-    function __construct() 
+    public function __construct()
     {
         include("./vendor/autoload.php");
     }
 }
-?>

@@ -1,4 +1,6 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (! defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
                 $config['full_tag_open'] = '<ul class="pagination">';
                 $config['full_tag_close'] = '</ul>';

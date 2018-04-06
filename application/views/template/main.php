@@ -9,16 +9,27 @@ $login_status = $this->session->userdata('login_status');
 if ($active_page == 'dashboard') {
     $dashboard = anchor('dashboard', 'Beranda', ['class' => 'active']);
     $upload = anchor('upload', 'Upload');
+    $this->session->set_userdata('login_button_active', 0);
 } elseif ($active_page == 'upload') {
     $dashboard = anchor('dashboard', 'Beranda');
     $upload = anchor('upload', 'Upload', ['class' => 'active']);
+} else {
+    $dashboard = anchor('dashboard', 'Beranda');
+    $upload = anchor('upload', 'Upload');
 }
 
 if ($login_status == 1) {
     $log_button = anchor('auth/logout', 'Logout');
 } else {
     $upload = '';
-    $log_button = anchor('auth/index', 'Login');
+
+    $login_button_active = $this->session->userdata('login_button_active');
+
+    if ($login_button_active == 1) {
+        $log_button = anchor('auth/index', 'Login', ['class' => 'active']);
+    } else {
+        $log_button = anchor('auth/index', 'Login');
+    }
 }
 
 ?>

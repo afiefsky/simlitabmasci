@@ -1,8 +1,9 @@
 <?php
 
-class User_model extends CI_Model {    
-
-    public function getUser() {
+class User_model extends CI_Model
+{
+    public function getUser()
+    {
         $this->db->select('*');
         $this->db->from('roles');
         $this->db->join('users', 'users.role_id = roles.id');
@@ -11,7 +12,8 @@ class User_model extends CI_Model {
         return $query;
     }
 
-    public function getUserRole($username) {
+    public function getUserRole($username)
+    {
         $this->db->select('
             users.id AS user_id,
             users.username,

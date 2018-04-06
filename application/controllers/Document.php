@@ -24,6 +24,6 @@ class Document extends CI_Controller
 
         $this->document->reject($id);
 
-        redirect('dashboard');   
+        redirect('dashboard');
     }
 }

@@ -34,19 +34,19 @@ class Auth extends CI_Controller
     public function index()
     {
         if (isset($_POST['submit'])) {
+            $this->session->set_userdata(['login_button_active' => 0]);
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
             $result = $this->auth->login($username, $password);
 
             if ($result == 1) {
-
                 $user_data = $this->user->getUserRole($username)->row_array();
 
                 /**
                  * level 1 is admin
                  * level 2 is lecturer
-                 */ 
+                 */
                 $level_number = $user_data['level_number'];
                 $user_id = $user_data['user_id'];
 
@@ -66,9 +66,12 @@ class Auth extends CI_Controller
             } else {
                 echo "Login error!!!";
             }
-
         } else {
-            $this->load->view('login/index');
+            $this->session->set_userdata([
+                'active_page' => 'login_page'
+            ]);
+            $this->session->set_userdata(['login_button_active' => 1]);
+            $this->template->load('template/main', 'login/index');
         }
     }
     /* End of Index */

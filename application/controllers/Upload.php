@@ -1,4 +1,4 @@
-<?php  
+<?php 
 
 class Upload extends CI_Controller
 {
@@ -32,8 +32,8 @@ class Upload extends CI_Controller
 
             echo "Upload success!!!";
             echo "<br />";
-            echo "Kembali ke ".anchor("dashboard", "Beranda");;
-
+            echo "Kembali ke ".anchor("dashboard", "Beranda");
+            ;
         } else {
             $this->session->set_userdata([
                 'active_page' => 'upload'
