@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2018 at 05:49 PM
+-- Generation Time: Apr 06, 2018 at 09:40 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -30,18 +30,25 @@ CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
   `file_name` text NOT NULL,
   `full_path` text NOT NULL,
+  `title` text NOT NULL,
+  `ppm_type` enum('a','b') NOT NULL COMMENT 'a = Penelitian Internal; b = PKM',
+  `submitted_fund` bigint(20) NOT NULL,
+  `period_type` enum('a','b','c') NOT NULL COMMENT 'a = 6, b = 7, c = 8 (all in month)',
   `user_id` int(11) NOT NULL COMMENT 'user id of the uploader',
-  `note` text NOT NULL,
-  `acceptance_status` enum('0','1','2') NOT NULL DEFAULT '2' COMMENT '0 = rejected; 1 = accepted; 2 = unconfirmed'
+  `acceptance_status` enum('0','1','2') NOT NULL DEFAULT '2' COMMENT '0 = rejected; 1 = accepted; 2 = unconfirmed',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `documents`
 --
 
-INSERT INTO `documents` (`id`, `file_name`, `full_path`, `user_id`, `note`, `acceptance_status`) VALUES
-(9, 'admin_cv1.pdf', 'E:/xampp/htdocs/simlitabmasci/uploads/admin_cv1.pdf', 1, 'cv nu admin\r\n', '1'),
-(10, 'cv_bature.pdf', 'E:/xampp/htdocs/simlitabmasci/uploads/cv_bature.pdf', 1, 'aye', '0');
+INSERT INTO `documents` (`id`, `file_name`, `full_path`, `title`, `ppm_type`, `submitted_fund`, `period_type`, `user_id`, `acceptance_status`, `created_at`, `updated_at`) VALUES
+(9, 'admin_cv1.pdf', 'E:/xampp/htdocs/simlitabmasci/uploads/admin_cv1.pdf', '', 'a', 0, 'a', 1, '1', '2018-04-06 11:21:54', '2018-04-06 11:22:21'),
+(10, 'cv_bature.pdf', 'E:/xampp/htdocs/simlitabmasci/uploads/cv_bature.pdf', '', 'a', 0, 'a', 1, '0', '2018-04-06 11:21:54', '2018-04-06 11:22:21'),
+(11, 'andry3.txt', 'E:/xampp/htdocs/simlitabmasci/uploads/andry3.txt', 'Testament', 'a', 1000000, 'a', 2, '2', '2018-04-06 13:44:05', '2018-04-06 13:44:05'),
+(12, 'andry4.txt', 'E:/xampp/htdocs/simlitabmasci/uploads/andry4.txt', 'Dante Must Die', 'a', 900000, 'b', 2, '2', '2018-04-06 14:38:43', '2018-04-06 14:38:43');
 
 -- --------------------------------------------------------
 
@@ -115,7 +122,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `roles`
 --
