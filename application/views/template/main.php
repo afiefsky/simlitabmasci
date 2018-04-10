@@ -5,32 +5,48 @@ $upload = 0;
 $active_page = $this->session->userdata('active_page');
 
 $login_status = $this->session->userdata('login_status');
+$level_number = $this->session->userdata('level_number');
 
 if ($active_page == 'dashboard') {
     $dashboard = anchor('dashboard', 'Beranda', ['class' => 'active']);
-    $upload = anchor('upload', 'Upload');
+    $upload = null;
     $this->session->set_userdata('login_button_active', 0);
+	$log_button = anchor('auth', 'Login');
+	$daftar_proposal = null;
 } elseif ($active_page == 'upload') {
     $dashboard = anchor('dashboard', 'Beranda');
     $upload = anchor('upload', 'Upload', ['class' => 'active']);
 } else {
     $dashboard = anchor('dashboard', 'Beranda');
     $upload = anchor('upload', 'Upload');
+	$log_button = anchor('auth', 'Login', ['class' => 'active']);
 }
 
-if ($login_status == 1) {
+if ($login_status == 1 && $level_number == 2 && $active_page == 'upload') {
     $log_button = anchor('auth/logout', 'Logout');
-} else {
-    $upload = '';
-
-    $login_button_active = $this->session->userdata('login_button_active');
-
-    if ($login_button_active == 1) {
-        $log_button = anchor('auth/index', 'Login', ['class' => 'active']);
-    } else {
-        $log_button = anchor('auth/index', 'Login');
-    }
+	$upload = anchor('upload', 'Upload', ['class' => 'active']);
+	$daftar_proposal = null;
 }
+else if ($login_status == 1 && $level_number == 2 && $active_page == 'dashboard') {
+	$dashboard = anchor('dashboard', 'Beranda', ['class' => 'active']);
+    $log_button = anchor('auth/logout', 'Logout');
+	$upload = anchor('upload', 'Upload');
+	$daftar_proposal = null;
+} else if($login_status == 1 && $level_number == 1 && $active_page == 'dashboard') {
+	$log_button = anchor('auth/logout', 'Logout');
+	$upload = null;
+	$daftar_proposal = anchor('daftar_proposal', 'Daftar Proposal');
+}else if($login_status == 1 && $level_number == 1 && $active_page == 'daftar_proposal') {
+	$log_button = anchor('auth/logout', 'Logout');
+	$upload = null;
+	$daftar_proposal = anchor('daftar_proposal', 'Daftar Proposal', ['class' => 'active']);
+}
+else if($login_status == 0){
+	$upload = null;
+	$daftar_proposal = null;
+}
+    
+
 
 ?>
 
@@ -50,9 +66,10 @@ if ($login_status == 1) {
     padding: 0;
     width: 25%;
     background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
+    position: absolute;
+    height: 200%;
     overflow: auto;
+	
   }
 
   li a {
@@ -78,6 +95,7 @@ if ($login_status == 1) {
   <ul>
     <li><?php echo $dashboard; ?></li>
     <li><?php echo $upload; ?></li>
+	<li><?php echo $daftar_proposal; ?></li>
     <li><br></li>
     <li><?php echo $log_button; ?></li>
   </ul>
