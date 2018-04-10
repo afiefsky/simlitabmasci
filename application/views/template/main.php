@@ -66,9 +66,10 @@ else if($login_status == 0){
     padding: 0;
     width: 25%;
     background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
+    position: absolute;
+    height: 200%;
     overflow: auto;
+	
   }
 
   li a {

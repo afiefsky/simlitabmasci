@@ -27,5 +27,10 @@ class Daftar_proposal_model extends CI_Model
         $this->db->like('file_name', $keyword);
         return $this->db->get();
     }
-
+	public function edit_data($id){
+        $query=$this->db->query("SELECT ud.*
+                                 FROM user_data ud 
+                                 WHERE ud.id = $id");
+        return $query->result_array();
+}
 }

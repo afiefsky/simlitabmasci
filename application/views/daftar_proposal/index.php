@@ -39,6 +39,8 @@
 		 <td><?php echo $post->submitted_fund;?></td>
 		 <td><?php echo $post->period_type;?></td>
 		 <td><?php echo $post->file_name;?></td>
+		 <td>
+                   <button class="btn btn-warning" onclick="edit_item(<?php echo $post->user_id;?>)">edit<i class="glyphicon glyphicon-pencil"></i></button></td>
       </tr>  
 			  
      <?php $no++;}?>
