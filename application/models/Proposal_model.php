@@ -1,18 +1,14 @@
 <?php
 
-class Daftar_proposal_model extends CI_Model
+class Proposal_model extends CI_Model
 {
-
-
     public function getPosts()
     {
-
-  $this->db->select("documents.user_id,created_at,title,ppm_type,submitted_fund,period_type,file_name"); 
-  $this->db->from('documents');
-  $this->db->join('roles','roles.id=documents.user_id');
-  $query = $this->db->get();
-  return $query->result();
- 
+        $this->db->select("doc.user_id, usr.username, created_at, title, ppm_type, submitted_fund, period_type, file_name"); 
+        $this->db->from("documents AS doc");
+        $this->db->join('users AS usr','usr.id = doc.user_id');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function getByKeyword($keyword)
@@ -27,10 +23,12 @@ class Daftar_proposal_model extends CI_Model
         $this->db->like('file_name', $keyword);
         return $this->db->get();
     }
-	public function edit_data($id){
+
+    public function edit_data($id)
+    {
         $query=$this->db->query("SELECT ud.*
-                                 FROM user_data ud 
-                                 WHERE ud.id = $id");
+        FROM user_data ud 
+        WHERE ud.id = $id");
         return $query->result_array();
-}
+    }
 }

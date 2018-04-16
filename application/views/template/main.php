@@ -35,11 +35,11 @@ else if ($login_status == 1 && $level_number == 2 && $active_page == 'dashboard'
 } else if($login_status == 1 && $level_number == 1 && $active_page == 'dashboard') {
 	$log_button = anchor('auth/logout', 'Logout');
 	$upload = null;
-	$daftar_proposal = anchor('daftar_proposal', 'Daftar Proposal');
-}else if($login_status == 1 && $level_number == 1 && $active_page == 'daftar_proposal') {
+	$daftar_proposal = anchor('proposal', 'Proposal');
+}else if($login_status == 1 && $level_number == 1 && $active_page == 'proposal') {
 	$log_button = anchor('auth/logout', 'Logout');
 	$upload = null;
-	$daftar_proposal = anchor('daftar_proposal', 'Daftar Proposal', ['class' => 'active']);
+	$daftar_proposal = anchor('proposal', 'Proposal', ['class' => 'active']);
 }
 else if($login_status == 0){
 	$upload = null;
