@@ -18,4 +18,14 @@ class Proposal extends CI_Controller
         ]);
         $this->template->load('template/main','proposal/index', $data); // load the view file , we are passing 
     }
+
+    public function edit()
+    {
+        $id = $this->uri->segment(3);
+
+        // the data
+        $data['record'] = $this->proposal->getById($id)->row_array();
+
+        $this->template->load('template/main', 'proposal/edit', $data);
+    }
 }
