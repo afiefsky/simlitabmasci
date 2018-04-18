@@ -7,7 +7,7 @@
       Tanggal Ajuan
     </td>
     <td>
-      <input type="text" name="created_at" value="<?php echo date("l, d-M-Y"); ?>" required readonly/>
+      <input type="text" name="created_at" value="<?php echo date("l, d-M-Y"); ?>" required readonly disabled/>
     </td>
   </tr>
   <!-- 2 -->
@@ -16,7 +16,7 @@
       Judul
     </td>
     <td>
-      <textarea name="title" rows="4" cols="100" placeholder="Masukkan judul proposal" required readonly/><?php echo $record['title'] ?></textarea>
+      <textarea name="title" rows="4" cols="100" placeholder="Masukkan judul proposal" required readonly disabled/><?php echo $record['title'] ?></textarea>
     </td>
   </tr>
   <!-- 3 -->
@@ -25,7 +25,7 @@
       Jenis PPM
     </td>
     <td>
-      <select name="ppm_type" />
+      <select name="ppm_type" disabled />
         <option value="a" <?php echo $record['ppm_type']=='a'? 'selected': ''; ?>>Penelitian Internal</option>
         <option value="b" <?php echo $record['ppm_type']=='b'? 'selected': ''; ?>>PKM</option>
       </select>
@@ -37,7 +37,14 @@
       Ajuan Dana
     </td>
     <td>
-      <input type="text" name="submitted_fund" id="submitted_fund" value="<?php echo $record['submitted_fund']; ?>" placeholder="Masukkan nominal dalam angka (0-9)" size="40" required readonly/>
+      <input type="text" name="submitted_fund" id="submitted_fund"
+      value="<?php
+          $result_rupiah = "Rp. " . number_format($record['submitted_fund'],0,',','.');
+          
+          echo $result_rupiah;
+      ?>"
+      placeholder="Masukkan nominal dalam angka (0-9)" size="40"
+      required readonly disabled/>
     </td>
   </tr>
   <!-- 5 -->
@@ -46,10 +53,10 @@
       Periode
     </td>
     <td>
-      <select name="period_type" required>
-        <option value="A">6 Bulan</option>
-        <option value="B">7 Bulan</option>
-        <option value="C">8 Bulan</option>
+      <select name="period_type" required disabled>
+        <option value="a" <?php echo $record['period_type']=='a'? 'selected': ''; ?>>6 Bulan</option>
+        <option value="b" <?php echo $record['period_type']=='b'? 'selected': ''; ?>>7 Bulan</option>
+        <option value="c" <?php echo $record['period_type']=='c'? 'selected': ''; ?>>8 Bulan</option>
       </select>
     </td>
   </tr>
@@ -59,7 +66,7 @@
       File Proposal
     </td>
     <td>
-      <input type="file" name="userfile" size="20" required  >
+      <i>*File yang telah diajukan tidak dapat dirubah</i>
     </td>
   </tr>
   <!-- 7 -->
